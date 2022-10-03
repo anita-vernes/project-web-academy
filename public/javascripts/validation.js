@@ -48,7 +48,7 @@ function containsOnlyNumbers(str) {
 // const form = document.getElementById('form');
 // const errorElement = document.getElementById('error');
 
-// const inputfirstName = document.querySelector("#firstname");
+// const inputfirstName = document.querySelector("#firstName");
 // const inputlastName = document.querySelector("#lastname");
 // const inputAddress = document.querySelector("#address");
 // const inputZipcode = document.querySelector("#zipcode");
@@ -107,7 +107,7 @@ function containsOnlyNumbers(str) {
 // }
 
 // function getActivity(){
-//   const activities = document.querySelectorAll(`#label-activity input`);
+//   const activities = document.querySelectorAll(`#labelActivity input`);
 
 //   for(let activity of activities){
 //     if(activity.checked === true)

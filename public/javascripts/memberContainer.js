@@ -1,16 +1,12 @@
 import { baseUrl } from "./index.js";
-import { popupContainer } from "./popupContainer.js";
-import {hidePopup,showPopup} from "./popupDialog.js";
-import {deleteMembers} from './deleteMembers.js';
-import {getInfo} from './editMembers.js';
+import { showPopup } from "./popupDialog.js";
+import { getInfo } from "./editMembers.js";
 
-let userAnchor = document.querySelector(".members-container");
-let popupAnchor = document.querySelector(".layout");
+export const elements = [];
 
-export function createMemberContainer(element) {
+export const createMemberContainer = (element) => {
   let memberContainer = document.createElement("div");
   memberContainer.classList.add("member-container");
-
   memberContainer.innerHTML = `<div class="nametag">
                 ${element.firstName[0].toUpperCase()}
             </div>
@@ -23,38 +19,41 @@ export function createMemberContainer(element) {
             <div class="memberemail">
             ${element.firstName.toLowerCase()}.${element.lastName.toLowerCase()}@gmail.com
             </div>
-            <button id="clickMe" class="edit-button" value="${element.id}">
+            <button class="edit-button" value="${element.id}">
                 Edit
             </button>
             <button class="delete-button" value="${element.id}">
                 Delete
             </button>`;
-
+  const yesBtn = document.querySelector("#yesBtn");
+  yesBtn.setAttribute("class", `${element.id}`);
   return memberContainer;
 }
 
-export function memberCards() {
+export const memberCards = () => {
+  let userAnchor = document.querySelector(".membersContainer");
+  const createElement = (element) => {
+    let userCard = createMemberContainer(element);
+    userAnchor.append(userCard);
+    elements.push(element);
+  }
+
   // Fetching items from API
   fetch(baseUrl)
     .then((response) => response.json())
     .then((data) => {
       data.forEach((element) => {
-        let userCard = createMemberContainer(element);
-        userAnchor.append(userCard);
-
-        let popupCard = popupContainer(element);
-        popupAnchor.append(popupCard);
-
-        addEventListenerByClass(`#closebtn`, "click", hidePopup);
-        addEventListenerByClass(`#yesbtn`, "click", deleteMembers);
-        addEventListenerByClass(".edit-button", "click", getInfo);
-        addEventListenerByClass(".delete-button", "click", showPopup);
+        createElement(element);
       });
+    })
+    .then(() => {
+      addEventListenerByClass(".edit-button", "click", getInfo);
+      addEventListenerByClass(".delete-button", "click", showPopup);
     })
     .catch((err) => console.log(err));
 }
 
-export function addEventListenerByClass(className, event, fn) {
+export const addEventListenerByClass = (className, event, fn) => {
   let getBtn = document.querySelectorAll(className);
   for (let i = 0; i < getBtn.length; i++) {
     getBtn[i].addEventListener(event, fn);

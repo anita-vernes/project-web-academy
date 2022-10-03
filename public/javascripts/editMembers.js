@@ -1,11 +1,11 @@
 // function to set edit member fields on click
-const baseUrl = "http://localhost:3000/users";
+import { baseUrl } from "./index.js";
 
 export async function getInfo(e) {
   e.preventDefault();
   const memberid = this.value;
-  const inputfirstName = document.querySelector(".no2 #firstname");
-  const inputlastName = document.querySelector(".no2 #lastname");
+  const inputfirstName = document.querySelector(".no2 #firstName");
+  const inputlastName = document.querySelector(".no2 #lastName");
   const inputAddress = document.querySelector(".no2 #address");
   const inputZipcode = document.querySelector(".no2 #zipcode");
   const inputCity = document.querySelector(".no2 #city");
@@ -28,7 +28,6 @@ export async function getInfo(e) {
   inputAge.value = data.age;
 
   const inputactivity = document.querySelector(`.no2 #${data.activity_class}`);
-
   inputactivity.checked = "checked";
 
   let inputsports = document.querySelectorAll(`.no2 .section2 input`);
@@ -39,10 +38,10 @@ export async function getInfo(e) {
     inputsport.checked = true;
   }
 
-  inputfirstName.setAttribute("class",memberid)
+  inputfirstName.setAttribute("class", memberid);
 }
 
-export function unchecker(inputsports) {
+export const unchecker = (inputsports) => {
   for (let input of inputsports) {
     input.checked = false;
   }
