@@ -1,20 +1,39 @@
 export const getSports = () => {
-    let sportarray=[];
-    const sports = document.querySelectorAll(`.section2 input`);
-    for (let sport of sports) {
-      if(sport.checked === true){
-        sportarray.push(sport.name);
-      }
+  let sportarray = [];
+  const sports = document.querySelectorAll(`.section2 input`);
+  for (let sport of sports) {
+    if (sport.checked === true) {
+      sportarray.push(sport.name);
     }
-    return sportarray;
   }
-  
+  return sportarray;
+};
+
 export const getActivity = () => {
-    const activities = document.querySelectorAll(`#labelActivity input`);
-    for(let activity of activities){
-      if(activity.checked === true)
-        return activity.id;
-    }
-    return "";
+  const activities = document.querySelectorAll(`#labelActivity input`);
+  for (let activity of activities) {
+    if (activity.checked === true) return activity.id;
   }
-  
+  return "";
+};
+
+export const getSportsEdit = () => {
+  let sportarray = [];
+  const sports = document.querySelectorAll(`#formUpdate .section2 input`);
+  for (let sport of sports) {
+    if (sport.checked === true) {
+      sportarray.push(sport.name);
+    }
+  }
+  return sportarray;
+};
+
+export const getActivityEdit = () => {
+  const activities = document.querySelectorAll(
+    `#formUpdate #labelActivity input`
+  );
+  for (let activity of activities) {
+    if (activity.checked === true) return activity.id;
+  }
+  return "";
+};

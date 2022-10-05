@@ -117,7 +117,6 @@ app.get("/users/:id", (req, res) => {
 app.post("/users", (req, res) => {
   const body = req.body || {};
   ITEMS.users.push({...body, id: crypto.randomUUID() });
-  console.log(ITEMS.users)
   return sendResponse(res.status(201), ITEMS.users[ITEMS.users.length - 1]);
 });
 
@@ -128,14 +127,12 @@ app.put("/users/:id", (req, res) => {
   );
   const user = ITEMS.users[userIdx];
   ITEMS.users[userIdx] = { ...body }
-  console.log(ITEMS.users)
   return sendResponse(res.status(201), ITEMS.users[userIdx]);
 });
 
 app.delete("/users/:id", (req, res) => {
   const id = req.params.id
   ITEMS.users = ITEMS.users.filter(user => user.id !== id)
-  console.log(ITEMS.users)
   return sendResponse(res.status(200))
 });
 

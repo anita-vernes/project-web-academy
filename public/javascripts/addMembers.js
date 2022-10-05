@@ -39,16 +39,19 @@ async function postInfo(e) {
       activity_class: getActivity(),
     }),
   })
-    .then((r) => r.json())
-    .then((data) => {
-      // console.log(data);
-    });
-  // .catch(errorbox());
-
-  clearInputValue();
-  clearElements();
-  memberCards();
-  successBox();
+    .then((r) => {
+      if (!r.ok) {
+        throw Error(errorbox());
+      }
+      return r.json();
+    })
+    .then(
+      clearInputValue(),
+      await new Promise((resolve) => setTimeout(resolve, 5000)),
+      clearElements(),
+      memberCards(),
+      successBox()
+    );
 }
 
 const clearInputValue = () => {

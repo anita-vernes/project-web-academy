@@ -1,4 +1,3 @@
-// function to set edit member fields on click
 import { baseUrl } from "./index.js";
 
 export async function getInfo(e) {
@@ -45,5 +44,4 @@ export const unchecker = (inputsports) => {
   for (let input of inputsports) {
     input.checked = false;
   }
-}
-
+};

@@ -10,25 +10,25 @@ export const createMemberContainer = (element) => {
   memberContainer.innerHTML = `<div class="nametag">
                 ${element.firstName[0].toUpperCase()}
             </div>
-            <div class="membername">
-                Name:  ${element.firstName} ${element.lastName}
+            <div class="memberName">
+               ${element.firstName} ${element.lastName}
             </div>
-            <div class="memberid" id="${element.id}">
+            <div class="memberId" id="${element.id}">
                 ID: ${element.id}
             </div>     
-            <div class="memberemail">
+            <div class="memberEmail">
             ${element.firstName.toLowerCase()}.${element.lastName.toLowerCase()}@gmail.com
             </div>
-            <button class="edit-button" value="${element.id}">
+            <button class="editBtn" value="${element.id}">
                 Edit
             </button>
-            <button class="delete-button" value="${element.id}">
+            <button class="deleteBtn" value="${element.id}">
                 Delete
             </button>`;
   const yesBtn = document.querySelector("#yesBtn");
   yesBtn.setAttribute("class", `${element.id}`);
   return memberContainer;
-}
+};
 
 export const memberCards = () => {
   let userAnchor = document.querySelector(".membersContainer");
@@ -36,7 +36,7 @@ export const memberCards = () => {
     let userCard = createMemberContainer(element);
     userAnchor.append(userCard);
     elements.push(element);
-  }
+  };
 
   // Fetching items from API
   fetch(baseUrl)
@@ -47,15 +47,15 @@ export const memberCards = () => {
       });
     })
     .then(() => {
-      addEventListenerByClass(".edit-button", "click", getInfo);
-      addEventListenerByClass(".delete-button", "click", showPopup);
+      addEventListenerByClass(".editBtn", "click", getInfo);
+      addEventListenerByClass(".deleteBtn", "click", showPopup);
     })
     .catch((err) => console.log(err));
-}
+};
 
 export const addEventListenerByClass = (className, event, fn) => {
   let getBtn = document.querySelectorAll(className);
   for (let i = 0; i < getBtn.length; i++) {
     getBtn[i].addEventListener(event, fn);
   }
-}
+};

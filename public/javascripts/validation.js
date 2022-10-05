@@ -1,254 +1,131 @@
-// import { getActivity } from "./selectorElementsGet.js";
+import {
+  getActivity,
+  getActivityEdit,
+  getSports,
+  getSportsEdit,
+} from "./selectorElementsGet.js";
 
-export const validation = () => {
-    const form = document.getElementById("form");
-    const inputfirstName = document.querySelector("#firstName");
-    const inputlastName = document.querySelector("#lastname");
-    const inputAddress = document.querySelector("#address");
-    const inputZipcode = document.querySelector("#zipcode");
-    const inputCity = document.querySelector("#city");
-    const inputCountry = document.querySelector("#country");
-    const inputGender = document.querySelector("#gender");
-    const inputAge = document.querySelector("#age");
-    const genderVal = inputGender.value;
-    // const inputActivity = getActivity();
-    
-    //Show input error messages
-    function showError(input, message) {
-      const formControl = input.parentElement;
-      formControl.className = "formWrapper error";
-      const small = formControl.querySelector("small");
-      small.innerText = message;
+export const validationAdd = (e) => {
+  const inputfirstName = document.getElementById("firstName");
+  const inputlastName = document.getElementById("lastName");
+  const inputAddress = document.getElementById("address");
+  const inputZipcode = document.getElementById("zipcode");
+  const inputCity = document.getElementById("city");
+  const inputCountry = document.getElementById("country");
+  const inputGender = document.getElementById("gender");
+  const inputAge = document.getElementById("age");
+  const inputActivity = getActivity();
+  const inputSport = getSports();
+  let checker = true;
+
+  const elements = [
+    inputfirstName,
+    inputlastName,
+    inputAddress,
+    inputCity,
+    inputCountry,
+    inputGender,
+    inputAge,
+    inputActivity,
+  ];
+  const elementsClass = [
+    "firstName",
+    "lastName",
+    "address",
+    "city",
+    "country",
+    "gender",
+    "age",
+    "activity",
+  ];
+
+  for (let i = 0; i < elements.length; i++) {
+    if (isEmpty(elements[i])) {
+      setError(elementsClass[i], `No ${elementsClass[i]} provided!`);
+      checker = false;
     }
-    
-    //show success colour
-    function showSucces(input) {
-      const formControl = input.parentElement;
-      formControl.className = "formWrapper success";
+  }
+
+  if (!containsOnlyNumbers(inputZipcode.value)) {
+    setError("zipcode", "Zipcode should contain numbers only!");
+    checker = false;
+  }
+
+  if (inputSport.length === 0) {
+    setError("section2Main", "No practiced sport provided!");
+    checker = false;
+  }
+
+  return checker;
+};
+
+export const validationEdit = (e) => {
+  const inputfirstName = document.querySelector(".no2 #firstName");
+  const inputlastName = document.querySelector(".no2 #lastName");
+  const inputAddress = document.querySelector(".no2 #address");
+  const inputZipcode = document.querySelector(".no2 #zipcode");
+  const inputCity = document.querySelector(".no2 #city");
+  const inputCountry = document.querySelector(".no2 #country");
+  const inputGender = document.querySelector(".no2 #gender");
+  const inputAge = document.querySelector(".no2 #age");
+  const inputActivity = getActivityEdit();
+  const inputSport = getSportsEdit();
+  let checker = true;
+
+  const elements = [
+    inputfirstName,
+    inputlastName,
+    inputAddress,
+    inputCity,
+    inputCountry,
+    inputGender,
+    inputAge,
+    inputActivity,
+  ];
+  const elementsClass = [
+    "no2 .firstName",
+    "no2 .lastName",
+    "no2 .address",
+    "no2 .city",
+    "no2 .country",
+    "no2 .gender",
+    "no2 .age",
+    "no2 .activity",
+  ];
+
+  for (let i = 0; i < elements.length; i++) {
+    if (isEmpty(elements[i])) {
+      setError(
+        elementsClass[i],
+        `No ${elementsClass[i].substring(5)} provided!`
+      );
+      checker = false;
     }
-    
-    //checkRequired fields
-    function checkRequired(inputArr) {
-      inputArr.forEach(function (input) {
-        if (input.value.trim() === "") {
-          showError(input, `${getFieldName(input)} is required`);
-        } else {
-          showSucces(input);
-        }
-      });
-    }
-    
-    //check input Length
-    function checkLength(input, min, max) {
-      if (input.value.length < min) {
-        showError(
-          input,
-          `${getFieldName(input)} must be at least ${min} characters`
-        );
-      } else if (input.value.length > max) {
-        showError(
-          input,
-          `${getFieldName(input)} must be less than ${max} characters`
-        );
-      } else {
-        showSucces(input);
-      }
-    }
-    
-    //get FieldName
-    function getFieldName(input) {
-      return input.id.charAt(0).toUpperCase() + input.id.slice(1);
-    }
-    
-    //Event Listeners
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-        let inputs = [inputfirstName,inputlastName,inputAddress,inputZipcode,inputCity,inputCountry,inputGender,inputAge,inputActivity];
-    
-      checkRequired(inputs);
-      checkLength(inputfirstName, 3, 15);
-    });
+  }
+
+  if (!containsOnlyNumbers(inputZipcode.value)) {
+    setError("no2 .zipcode", "Zipcode should contain numbers only!");
+    checker = false;
+  }
+
+  if (inputSport.length === 0) {
+    setError("no2 .section2Main", "No practiced sport provided!");
+    checker = false;
+  }
+
+  return checker;
+};
+
+function containsOnlyNumbers(str) {
+  return /^\d+$/.test(str);
 }
 
+const isEmpty = (input) => {
+  return input.value === "" || input.value === "null" || input === "";
+};
 
-// import index.js;
-
-// const form = document.getElementById('form');
-// const errorElement = document.getElementById('error');
-
-// const inputfirstName = document.querySelector("#firstName");
-// const inputlastName = document.querySelector("#lastname");
-// const inputAddress = document.querySelector("#address");
-// const inputZipcode = document.querySelector("#zipcode");
-// const inputCity = document.querySelector("#city");
-// const inputCountry = document.querySelector("#country");
-// const inputGender = document.querySelector("#gender");
-// const inputAge = document.querySelector("#age");
-
-// const genderval = inputGender.value;
-
-// let inputs = [inputfirstName,inputlastName,inputAddress,inputZipcode,inputCity,inputCountry,inputGender,inputAge];
-// form.addEventListener('submit',(e)=>{
-//   e.preventDefault()
-//   let message = [];
-//   let messageTypeNum = [];
-
-//   for(let input of inputs){
-//     if(input.value === '' || input.value == null || input.value !== inputGender){
-//       message.push(`${input.name[0].toUpperCase()}${input.name.substring(1)}`)
-//     }
-
-//     if((input == inputZipcode)&&(!containsOnlyNumbers(input.value))){
-//       messageTypeNum.push(`${input.name[0].toUpperCase()}${input.name.substring(1)}`)
-//     }
-//   }
-
-//   if(message.length > 0){
-//     errorElement.innerHTML = message.join(', ')+' are not specified!  ';
-//   }
-
-//   if(messageTypeNum.length > 0){
-//     errorElement.innerHTML += messageTypeNum.join(', ')+ ' is not a number!'
-//   }
-// })
-
-// function containsOnlyNumbers(str) {
-//   return /^[0-9]+$/.test(str);
-// }
-
-
-
-// function getSports(){
-//   let sportarray=[];
-//   const sports = document.querySelectorAll(`.section2 input`);
-
-//   for (let sport of sports) {
-//     if(sport.checked === true){
-//       sportarray.name.push(sport.name);
-//     }
-//   }
-//   return sportarray;
-
-// }
-
-// function getActivity(){
-//   const activities = document.querySelectorAll(`#labelActivity input`);
-
-//   for(let activity of activities){
-//     if(activity.checked === true)
-//       return activity.id;
-//   }
-//   return "";
-// }
-
-// const form = document.getElementById('form');
-// const errorElement = document.getElementById('error');
-
-// const inputZipcode = document.querySelector("#zipcode");
-// const inputGender = document.querySelector("#gender");
-
-// const genderval = inputGender.value;
-// const text = inputGender.options[inputGender.selectedIndex].text;
-
-// let inputs = [inputZipcode,inputGender];
-// export function formChecker(){
-//     form.addEventListener('input',(e)=>{
-//         e.preventDefault();
-//         let messageTypeNum = [];
-//         let message = [];
-//         for(let input of inputs){
-
-//             if(input === genderval){
-//             const genderval = inputGender.value;
-//             console.log(genderval)
-//             if(genderval === null){
-//                 message.push(`${input.name[0].toUpperCase()}${input.name.substring(1)}`)}
-//             }
-
-//             if((input == inputZipcode)&&(!containsOnlyNumbers(input.value))){
-//             messageTypeNum.push(`${input.name[0].toUpperCase()}${input.name.substring(1)}`)
-//             }
-//         }
-
-//         if(message.length > 0){
-//             errorElement.innerHTML = message.join(', ')+' are not specified!  ';
-//         }
-
-//         if(messageTypeNum.length > 0){
-//             errorElement.innerHTML += messageTypeNum.join(', ')+ ' is not a number!'
-//         }
-//     })
-// }
-
-// function containsOnlyNumbers(str) {
-//   return /^[0-9]+$/.test(str);
-// }
-
-// import index.js;
-
-// const form = document.getElementById('form');
-// const errorElement = document.getElementById('error');
-
-// const inputfirstName = document.querySelector("#firstName");
-// const inputlastName = document.querySelector("#lastname");
-// const inputAddress = document.querySelector("#address");
-// const inputZipcode = document.querySelector("#zipcode");
-// const inputCity = document.querySelector("#city");
-// const inputCountry = document.querySelector("#country");
-// const inputGender = document.querySelector("#gender");
-// const inputAge = document.querySelector("#age");
-
-// const genderval = inputGender.value;
-
-// let inputs = [inputfirstName,inputlastName,inputAddress,inputZipcode,inputCity,inputCountry,inputGender,inputAge];
-// form.addEventListener('submit',(e)=>{
-//   e.preventDefault()
-//   let message = [];
-//   let messageTypeNum = [];
-
-//   for(let input of inputs){
-//     if(input.value === '' || input.value == null || input.value !== inputGender){
-//       message.push(`${input.name[0].toUpperCase()}${input.name.substring(1)}`)
-//     }
-
-//     if((input == inputZipcode)&&(!containsOnlyNumbers(input.value))){
-//       messageTypeNum.push(`${input.name[0].toUpperCase()}${input.name.substring(1)}`)
-//     }
-//   }
-
-//   if(message.length > 0){
-//     errorElement.innerHTML = message.join(', ')+' are not specified!  ';
-//   }
-
-//   if(messageTypeNum.length > 0){
-//     errorElement.innerHTML += messageTypeNum.join(', ')+ ' is not a number!'
-//   }
-// })
-
-// function containsOnlyNumbers(str) {
-//   return /^[0-9]+$/.test(str);
-// }
-
-
-// function getSports(){
-//   let sportarray=[];
-//   const sports = document.querySelectorAll(`.section2 input`);
-
-//   for (let sport of sports) {
-//     if(sport.checked === true){
-//       sportarray.name.push(sport.name);
-//     }
-//   }
-//   return sportarray;
-
-// }
-
-// function getActivity(){
-//   const activities = document.querySelectorAll(`#labelActivity input`);
-
-//   for(let activity of activities){
-//     if(activity.checked === true)
-//       return activity.id;
-//   }
-//   return "";
-// }
+function setError(input, message) {
+  let small = document.querySelector(`.${input} small`);
+  small.style.display = "block";
+  small.innerText = message;
+}
