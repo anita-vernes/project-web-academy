@@ -43,17 +43,23 @@ export const validationAdd = (e) => {
     if (isEmpty(elements[i])) {
       setError(elementsClass[i], `No ${elementsClass[i]} provided!`);
       checker = false;
+    } else {
+      unSetError(elementsClass[i]);
     }
   }
 
   if (!containsOnlyNumbers(inputZipcode.value)) {
     setError("zipcode", "Zipcode should contain numbers only!");
     checker = false;
+  } else {
+    unSetError("zipcode");
   }
 
   if (inputSport.length === 0) {
     setError("section2Main", "No practiced sport provided!");
     checker = false;
+  } else {
+    unSetError("section2Main");
   }
 
   return checker;
@@ -100,17 +106,23 @@ export const validationEdit = (e) => {
         `No ${elementsClass[i].substring(5)} provided!`
       );
       checker = false;
+    } else {
+      unSetError(elementsClass[i]);
     }
   }
 
   if (!containsOnlyNumbers(inputZipcode.value)) {
     setError("no2 .zipcode", "Zipcode should contain numbers only!");
     checker = false;
+  } else {
+    unSetError("no2 .zipcode");
   }
 
   if (inputSport.length === 0) {
     setError("no2 .section2Main", "No practiced sport provided!");
     checker = false;
+  } else {
+    unSetError("section2Main");
   }
 
   return checker;
@@ -128,4 +140,9 @@ function setError(input, message) {
   let small = document.querySelector(`.${input} small`);
   small.style.display = "block";
   small.innerText = message;
+}
+
+function unSetError(input) {
+  let small = document.querySelector(`.${input} small`);
+  small.style.display = "none";
 }
