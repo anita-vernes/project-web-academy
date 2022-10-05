@@ -19,8 +19,6 @@ export const validationAdd = (e) => {
   let checker = true;
 
   const elements = [
-    inputfirstName,
-    inputlastName,
     inputAddress,
     inputCity,
     inputCountry,
@@ -29,8 +27,6 @@ export const validationAdd = (e) => {
     inputActivity,
   ];
   const elementsClass = [
-    "firstName",
-    "lastName",
     "address",
     "city",
     "country",
@@ -38,6 +34,20 @@ export const validationAdd = (e) => {
     "age",
     "activity",
   ];
+
+  if (isEmpty(inputfirstName)) {
+    setError("firstName", "No first name provided!");
+    checker = false;
+  } else {
+    unSetError("firstName");
+  }
+
+  if (isEmpty(inputlastName)) {
+    setError("lastName", "No last name provided!");
+    checker = false;
+  } else {
+    unSetError("lastName");
+  }
 
   for (let i = 0; i < elements.length; i++) {
     if (isEmpty(elements[i])) {
@@ -48,7 +58,10 @@ export const validationAdd = (e) => {
     }
   }
 
-  if (!containsOnlyNumbers(inputZipcode.value)) {
+  if (isEmpty(inputZipcode)) {
+    setError("zipcode", "No zipcode provided!");
+    checker = false;
+  } else if (!containsOnlyNumbers(inputZipcode.value)) {
     setError("zipcode", "Zipcode should contain numbers only!");
     checker = false;
   } else {
@@ -79,8 +92,6 @@ export const validationEdit = (e) => {
   let checker = true;
 
   const elements = [
-    inputfirstName,
-    inputlastName,
     inputAddress,
     inputCity,
     inputCountry,
@@ -89,8 +100,6 @@ export const validationEdit = (e) => {
     inputActivity,
   ];
   const elementsClass = [
-    "no2 .firstName",
-    "no2 .lastName",
     "no2 .address",
     "no2 .city",
     "no2 .country",
@@ -98,6 +107,20 @@ export const validationEdit = (e) => {
     "no2 .age",
     "no2 .activity",
   ];
+
+  if (isEmpty(inputfirstName)) {
+    setError("no2 .firstName", "No first name provided!");
+    checker = false;
+  } else {
+    unSetError("no2 .firstName");
+  }
+
+  if (isEmpty(inputlastName)) {
+    setError("no2 .lastName", "No last name provided!");
+    checker = false;
+  } else {
+    unSetError("no2 .lastName");
+  }
 
   for (let i = 0; i < elements.length; i++) {
     if (isEmpty(elements[i])) {
@@ -111,13 +134,15 @@ export const validationEdit = (e) => {
     }
   }
 
-  if (!containsOnlyNumbers(inputZipcode.value)) {
+  if (isEmpty(inputZipcode)) {
+    setError("no2 .zipcode", "No zipcode provided!");
+    checker = false;
+  } else if (!containsOnlyNumbers(inputZipcode.value)) {
     setError("no2 .zipcode", "Zipcode should contain numbers only!");
     checker = false;
   } else {
-    unSetError("no2 .zipcode");
+    unSetError("zipcode");
   }
-
   if (inputSport.length === 0) {
     setError("no2 .section2Main", "No practiced sport provided!");
     checker = false;
