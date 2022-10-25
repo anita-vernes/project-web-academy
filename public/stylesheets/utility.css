@@ -1,0 +1,155 @@
+#popup {
+    display: none;
+    width: 442px;
+    position: fixed;
+    margin-top: 15%;
+    background: #D9D9D9;
+    border: 1px solid #3B95D7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    z-index: 1;
+    left: calc(50% - 223px);
+}
+
+#popup:before {
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    content: '';
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+#popup .popupHeader {
+    padding: 10px 20px 10px 20px;
+    background: #3B95D7;
+    border-radius: 3px 3px 0px 0px;
+    color: #FFF;
+}
+
+#popup .popupHeader h1 {
+    margin: 0;
+    padding: 0;
+    font-size: 24px;
+}
+
+#popup .popupFooter,
+#popup .popupBody {
+    padding: 20px;
+    text-align: right;
+    background: #D9D9D9;
+}
+
+#popup .popupBody p {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    margin: 0;
+}
+
+#popup .popupFooter button {
+    padding: 8px 60px;
+    color: #FFF;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    margin-left: 15px;
+}
+
+#yesBtn {
+    background: #3B95D7;
+    border: 1px solid #686868;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#cancelBtn {
+    background: #DD482D;
+    border: 1px solid #686868;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#toastmsg1,
+#toastmsg2 {
+    background-color: #48B791;
+}
+
+#toastmsgError1 {
+    background-color: #DD482D;
+}
+
+#toastmsg1,
+#toastmsg2,
+#toastmsgError1 {
+    visibility: hidden;
+    min-width: 500px;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    right: 30px;
+}
+
+#toastmsg1.show,
+#toastmsg2.show,
+#toastmsgError1.show {
+    visibility: visible;
+    -webkit-animation: fadein 1s, fadeout 1.5s 3.5s;
+    animation: fadein 1s, fadeout 1.5s 3.5s;
+}
+
+small {
+    display: none;
+    color: red;
+}
+
+@-webkit-keyframes fadein {
+    from {
+        right: 0;
+        opacity: 0;
+    }
+
+    to {
+        right: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        right: 0;
+        opacity: 0;
+    }
+
+    to {
+        right: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        right: 20px;
+        opacity: 1;
+    }
+
+    to {
+        right: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        right: 30px;
+        opacity: 1;
+    }
+
+    to {
+        right: 0;
+        opacity: 0;
+    }
+}

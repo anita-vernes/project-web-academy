@@ -1,12 +1,12 @@
 export const getSports = () => {
-  let sportarray = [];
+  let sportArray = [];
   const sports = document.querySelectorAll(`.section2 input`);
   for (let sport of sports) {
     if (sport.checked === true) {
-      sportarray.push(sport.name);
+      sportArray.push(sport.name);
     }
   }
-  return sportarray;
+  return sportArray;
 };
 
 export const getActivity = () => {
@@ -18,14 +18,14 @@ export const getActivity = () => {
 };
 
 export const getSportsEdit = () => {
-  let sportarray = [];
+  let sportArray = [];
   const sports = document.querySelectorAll(`#formUpdate .section2 input`);
   for (let sport of sports) {
     if (sport.checked === true) {
-      sportarray.push(sport.name);
+      sportArray.push(sport.name);
     }
   }
-  return sportarray;
+  return sportArray;
 };
 
 export const getActivityEdit = () => {

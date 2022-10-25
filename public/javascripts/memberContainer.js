@@ -38,7 +38,6 @@ export const memberCards = () => {
     elements.push(element);
   };
 
-  // Fetching items from API
   fetch(baseUrl)
     .then((response) => response.json())
     .then((data) => {

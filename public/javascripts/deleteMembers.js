@@ -1,6 +1,7 @@
 import { errorbox } from "./addMembers.js";
 import { baseUrl } from "./index.js";
 import { hidePopup } from "./popupDialog.js";
+
 export const deleteMember = (memberId) => {
   return async function (e) {
     e.preventDefault();

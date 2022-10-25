@@ -1,32 +1,49 @@
 import { baseUrl } from "./index.js";
 import { getActivity, getSports } from "./selectorElementsGet.js";
-import { unchecker } from "./editMembers.js";
 import { memberCards } from "./memberContainer.js";
+import { clearInputValue, clearElements } from "./utility.js";
 
-export const addMembers = () => {
-  const postBtn = document.getElementById("save");
-  postBtn.addEventListener("click", postInfo);
+const form = document.querySelector(".formWrapper"),
+  inputFirstName = form.querySelector("#firstName"),
+  inputLastName = form.querySelector("#lastName"),
+  inputAddress = form.querySelector("#address"),
+  inputZipcode = form.querySelector("#zipcode"),
+  inputCity = form.querySelector("#city"),
+  inputCountry = form.querySelector("#country"),
+  inputGender = form.querySelector("#gender"),
+  inputAge = form.querySelector("#age"),
+  inputSports = form.querySelectorAll(".section2 input"),
+  inputActivity1 = form.querySelector("#professional"),
+  inputActivity2 = form.querySelector("#amateur");
+
+const successBox = () => {
+  const success = document.getElementById("toastmsg1");
+  success.className += "show";
+
+  setTimeout(function () {
+    success.className = success.className.replace("show", "");
+  }, 5000);
+};
+
+export const errorbox = () => {
+  const error = document.getElementById("toastmsgError1");
+  error.className += "show";
+
+  setTimeout(function () {
+    error.className = error.className.replace("show", "");
+  }, 5000);
 };
 
 async function postInfo(e) {
   e.preventDefault();
-  const inputfirstName = document.querySelector(".formWrapper #firstName");
-  const inputlastName = document.querySelector(".formWrapper #lastName");
-  const inputAddress = document.querySelector(".formWrapper #address");
-  const inputZipcode = document.querySelector(".formWrapper #zipcode");
-  const inputCity = document.querySelector(".formWrapper #city");
-  const inputCountry = document.querySelector(".formWrapper #country");
-  const inputGender = document.querySelector(".formWrapper #gender");
-  const inputAge = document.querySelector(".formWrapper #age");
-
   const res = await fetch(baseUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      firstName: inputfirstName.value,
-      lastName: inputlastName.value,
+      firstName: inputFirstName.value,
+      lastName: inputLastName.value,
       address: {
         streetAndNumber: inputAddress.value,
         postalCode: inputZipcode.value,
@@ -46,64 +63,26 @@ async function postInfo(e) {
       return r.json();
     })
     .then(
-      clearInputValue(),
-      await new Promise((resolve) => setTimeout(resolve, 5000)),
+      clearInputValue( 
+        inputFirstName,
+        inputLastName,
+        inputAddress,
+        inputZipcode,
+        inputCity,
+        inputCountry,
+        inputGender,
+        inputAge,
+        inputActivity1,
+        inputActivity2,
+        inputSports),
+      setTimeout(5000),
       clearElements(),
       memberCards(),
       successBox()
     );
 }
 
-const clearInputValue = () => {
-  const inputfirstName = document.querySelector(".formWrapper #firstName");
-  const inputlastName = document.querySelector(".formWrapper #lastName");
-  const inputAddress = document.querySelector(".formWrapper #address");
-  const inputZipcode = document.querySelector(".formWrapper #zipcode");
-  const inputCity = document.querySelector(".formWrapper #city");
-  const inputCountry = document.querySelector(".formWrapper #country");
-  const inputGender = document.querySelector(".formWrapper #gender");
-  const inputAge = document.querySelector(".formWrapper #age");
-  let inputsports = document.querySelectorAll(`.formWrapper .section2 input`);
-
-  inputfirstName.value = "";
-  inputlastName.value = "";
-  inputAddress.value = "";
-  inputZipcode.value = "";
-  inputCity.value = "";
-  inputCountry.value = "";
-  inputGender.value = "";
-  inputAge.value = "";
-  const inputactivity1 = document.querySelector(`#professional`);
-  const inputactivity2 = document.querySelector(`#amateur`);
-
-  inputactivity1.checked = "";
-  inputactivity2.checked = "";
-
-  unchecker(inputsports);
-};
-
-const clearElements = () => {
-  const members = document.querySelectorAll(".member-container");
-
-  for (let element of members) {
-    element.remove();
-  }
-};
-
-const successBox = () => {
-  const success = document.getElementById("toastmsg1");
-  success.className = "show";
-
-  setTimeout(function () {
-    success.className = success.className.replace("show", "");
-  }, 5000);
-};
-
-export const errorbox = () => {
-  const error = document.getElementById("toastmsgError1");
-  error.className = "show";
-
-  setTimeout(function () {
-    error.className = error.className.replace("show", "");
-  }, 5000);
+export const addMembers = () => {
+  const postBtn = form.querySelector("#save");
+  postBtn.addEventListener("click", postInfo);
 };

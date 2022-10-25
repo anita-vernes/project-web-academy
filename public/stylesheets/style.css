@@ -1,14 +1,4 @@
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
-    height: 100%;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-}
+@import url("utility.css");
 
 body {
     margin: 0;
@@ -19,45 +9,38 @@ body {
 
 .nav {
     background-color: #3B95D7;
-    height: 9%;
-    display: grid;
-    grid-template-rows: 1fr;
-}
-
-.nav p {
-    color: white;
-    font-size: 36px;
-    font-weight: 600;
-    line-height: 85px;
-    letter-spacing: 0.1em;
-    margin: 0;
+    height: 85px;
+    display: flex;
+    align-items: center;
 }
 
 .title {
-    grid-column: 1/2;
-    grid-row: 1;
-    padding-left: 2rem;
+    color: #fff;
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    padding-left: 32px;
 }
 
 .layout {
     display: grid;
-    height: 91%;
-    grid-template-columns: 0.19fr 0.71fr;
-    border-top: 5px solid white;
+    height: calc(100vh - 90px);
+    grid-template-columns: 413px 1fr;
+    border-top: 5px solid #fff;
 }
 
 aside {
+    overflow: scroll;
     grid-column: 1/2;
-    width: 100%;
     background: rgba(59, 149, 215, 0.15);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    overflow: auto !important;
-    border-right: 12px solid white;
-
+    border-right: 12px solid #fff;
+    padding-right: 39px;
+    padding-left: 22px;
 }
 
 .mainContainer {
-    overflow: auto !important;
+    overflow: scroll;
     width: 100%;
     grid-column: 2/4;
     background: #D9D9D9;
@@ -65,16 +48,14 @@ aside {
 
 .main {
     display: grid;
-    height: 100%;
     grid-template-rows: 1fr 1fr 0.1fr;
 }
 
 .formWrapper {
     display: block;
-    padding-top: 25px;
     padding-left: 32px;
     grid-row: 1/2;
-    border-bottom: 15px solid white;
+    border-bottom: 15px solid #fff;
     padding-top: 21px;
 }
 
@@ -93,13 +74,11 @@ aside {
     margin: 0;
     font-weight: 600;
     font-size: 24px;
-    line-height: 36px;
     color: #3B95D7;
 }
 
 label {
     font-size: 14px;
-    line-height: 21px;
     color: #666363;
     font-weight: 600;
     letter-spacing: 0.1em;
@@ -171,11 +150,7 @@ select {
 
 .section1 select {
     appearance: none;
-    background-image: url("../images/arrow.png");
-    background-repeat: no-repeat;
-    background-position: right 0.7rem top 50%;
-    background-size: 1rem auto;
-    line-height: 1em;
+    background: #fff url("../images/arrow.png") no-repeat right 0.7rem top 50%;
 }
 
 .section1,
@@ -189,27 +164,26 @@ select {
     font-size: 18px;
     padding-top: 8px;
     width: 100%;
-    min-width: 50%;
     padding-left: 1rem;
 }
 
 .section2 label {
     display: block;
     white-space: nowrap;
-    font-size: 80%;
     color: #3B95D7;
-    padding-bottom: 1.9375rem;
+    padding-bottom: 31px;
 }
 
 .section2 input {
-    width: unset;
+    width: initial;
     padding-right: 8px;
 }
 
 .section2Main h2 {
-    padding-left: 2%;
-    padding-top: 1%;
-    line-height: 21px;
+    padding-left: 13px;
+    padding-top: 7px;
+    display: flex;
+    align-items: center;
     font-size: 14px;
     margin: 0;
     letter-spacing: 0.1em;
@@ -219,8 +193,7 @@ select {
 .section2Main {
     border: 1px solid #3B95D7;
     border-radius: 15px;
-    width: 92%;
-    height: 100%;
+    width: calc(100% - 50px);
     grid-column: 1/16;
 }
 
@@ -228,7 +201,7 @@ select {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
     width: 95%;
-    padding-bottom: 1.27rem;
+    padding-bottom: 20px;
 }
 
 input[type="radio"] {
@@ -237,7 +210,8 @@ input[type="radio"] {
 
 input[type="checkbox"] {
     accent-color: #3B95D7;
-    height: 40%;
+    height: 9px;
+    width: 9px;
     margin: 0;
     box-shadow: initial;
     outline: 1px solid #3B95D7;
@@ -245,33 +219,28 @@ input[type="checkbox"] {
 
 .button1,
 .button2 {
-    color: white;
+    color: #fff;
     display: inline-block;
     height: 30px;
     background: #3B95D7;
     border: 1px solid #686868;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-weight: 700;
-    font-size: 14px;
     font-weight: 600;
     letter-spacing: 0.1em;
-    line-height: 30px;
     text-align: center;
     align-self: end;
     grid-column: 17/21;
 }
 
-.button2 {
-    position: absolute;
-    margin-bottom: 300px;
-    margin-left: 1.375rem;
-    ;
-    display: none;
-}
-
 #backBtnEdit,
 #backBtnAdd {
     display: none;
+    margin-left: 20px;
+}
+
+#backBtnEdit.hide,
+#backBtnAdd.hide {
+    visibility: hidden;
 }
 
 .section2 input {
@@ -307,24 +276,23 @@ input[type="checkbox"] {
     width: 100%;
 }
 
-.activity input {
-    height: initial;
-    border: initial;
-    box-shadow: initial;
-    width: initial;
-}
-
 #labelActivity {
     padding: 5px;
-    font-weight: bold;
+    font-weight: 600;
     letter-spacing: 0.1em;
     color: #3B95D7;
+}
+
+.activity input {
+    height: initial;
+    box-shadow: initial;
+    width: initial;
 }
 
 .activityContainer {
     display: grid;
     grid-template-columns: 0.57fr 0.43fr;
-    background-color: white;
+    background-color: #fff;
     text-align: right;
 }
 
@@ -337,28 +305,24 @@ input[type="checkbox"] {
 }
 
 .section3 {
-    width: 100%;
-    height: 6.063rem;
+    height: 97px;
     background-color: #3B95D7;
     grid-row: 3/4;
-    padding: 0;
-    border-top: 1px solid white;
-    bottom: 0;
+    border-top: 1px solid #fff;
 }
 
 .section3 ul {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    margin: 0;
-    line-height: 1rem;
-    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 100%;
-    color: white;
+    margin: 0;
+    font-size: 16px;
+    color: #fff;
 }
 
 .section3 li {
-    line-height: 6.063rem;
-    vertical-align: middle;
+    flex: auto;
     letter-spacing: 0.1em;
 }
 
@@ -383,20 +347,17 @@ input[type="checkbox"] {
 }
 
 .member-container {
-    width: 90%;
-    height: 80%;
+    height: 128px;
     background: rgba(86, 92, 78, 0.1);
     border: 0.5px solid #565C4E;
     border-radius: 10px;
-    margin-left: 1.375rem;
-    margin-top: 0.8125rem;
+    margin-top: 13px;
     display: grid;
     grid-template-rows: repeat(4, 0.6fr);
     grid-template-columns: repeat(12, 0.5fr);
     padding-top: 0.625rem;
     padding-bottom: 11px;
     font-size: 16px;
-    line-height: 24px;
 }
 
 .memberName {
@@ -413,15 +374,16 @@ input[type="checkbox"] {
 }
 
 .nametag {
-    height: 4rem;
-    width: 4rem;
+    height: 64px;
+    width: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     background-color: #BDBDBD;
-    margin-left: 0.563rem;
+    margin-left: 9px;
     grid-row: 1/5;
     grid-column: 1/2;
-    line-height: 4rem;
-    text-align: center;
     color: #666363;
     font-size: 36px;
 }
@@ -431,41 +393,42 @@ input[type="checkbox"] {
     grid-row: 3/4;
     grid-column: 3/13;
     word-wrap: break-word;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
 }
 
 .memberId,
 .memberEmail {
+    color: #666363;
     font-size: 12px;
 }
 
 .editBtn,
 .deleteBtn {
-    height: 90%;
-    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 21px;
+    width: 53px;
     font-size: 14px;
     letter-spacing: 0.1em;
-    text-align: center;
 }
 
 .editBtn {
     grid-row: 4/5;
-    grid-column: 3/7;
+    grid-column: 7/9;
     background: #D9D9D9;
     border: 1px solid #767373;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     color: #666363;
-    height: 23px;
 }
 
 .deleteBtn {
     grid-row: 4/5;
-    grid-column: 8/12;
-    color: white;
+    grid-column: 10/12;
+    color: #fff;
     background: #DD5A5A;
     border: 1px solid #686868;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    height: 23px;
 }
 
 .membersContainer {
@@ -482,89 +445,6 @@ input[type="checkbox"] {
     display: none;
 }
 
-#popup {
-    display: none;
-}
-
-#popup {
-    width: 442px;
-    position: fixed;
-    margin-top: 15%;
-    background: #D9D9D9;
-    border: 1px solid #3B95D7;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 5px;
-    display: none;
-    z-index: 1;
-    left: 50%;
-    margin-left: -10%;
-}
-
-#popup:before {
-    height: 100%;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    position: fixed;
-    content: '';
-    left: 0;
-    top: 0;
-    z-index: -1;
-}
-
-#popup .popupHeader {
-    padding: 10px 20px 10px 20px;
-    background: #3B95D7;
-    border-radius: 3px 3px 0px 0px;
-    color: #FFF;
-}
-
-#popup .popupHeader h1 {
-    margin: 0;
-    padding: 0;
-    font-size: 24px;
-}
-
-#popup .popupFooter {
-    padding: 20px 20px 20px 20px;
-    text-align: right;
-    background: #D9D9D9;
-}
-
-#popup .popupBody {
-    padding: 20px 20px 20px 20px;
-    background: #D9D9D9;
-
-}
-
-#popup .popupBody p {
-    margin: 0;
-    line-height: 1.5em;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-#popup .popupFooter button {
-    padding: 8px 60px;
-    color: #FFF;
-    text-decoration: none;
-    display: inline-block;
-    text-align: center;
-    margin-left: 15px;
-}
-
-#yesBtn {
-    background: #3B95D7;
-    border: 1px solid #686868;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-#cancelBtn {
-    background: #DD482D;
-    border: 1px solid #686868;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
 .formWrapper.no2 {
     display: block;
     padding-top: 21px;
@@ -576,136 +456,50 @@ input[type="checkbox"] {
     grid-row: 2/3;
 }
 
-#toastmsg1,
-#toastmsg2 {
-    background-color: #48B791;
+.formWrapper.show,
+.formWrapper.no2.show,
+#backBtnEdit.show,
+#backBtnAdd.show {
+    display: block;
 }
 
-#toastmsgError1 {
-    background-color: #DD482D;
-}
-
-#toastmsg1,
-#toastmsg2,
-#toastmsgError1 {
-    visibility: hidden;
-    min-width: 500px;
-    color: #fff;
-    text-align: center;
-    border-radius: 2px;
-    padding: 16px;
-    position: fixed;
-    z-index: 1;
-    right: 30px;
-}
-
-#toastmsg1.show,
-#toastmsg2.show,
-#toastmsgError1.show {
-    visibility: visible;
-    -webkit-animation: fadein 1s, fadeout 1.5s 3.5s;
-    animation: fadein 1s, fadeout 1.5s 3.5s;
-}
-
-small{
+.formWrapper.hide,
+.formWrapper.no2.hide,
+#backBtnEdit.hide,
+#backBtnAdd.hide {
     display: none;
-    color: red;
-}
-
-@-webkit-keyframes fadein {
-    from {
-        right: 0;
-        opacity: 0;
-    }
-
-    to {
-        right: 30px;
-        opacity: 1;
-    }
-}
-
-@keyframes fadein {
-    from {
-        right: 0;
-        opacity: 0;
-    }
-
-    to {
-        right: 30px;
-        opacity: 1;
-    }
-}
-
-@-webkit-keyframes fadeout {
-    from {
-        right: 20px;
-        opacity: 1;
-    }
-
-    to {
-        right: 0;
-        opacity: 0;
-    }
-}
-
-@keyframes fadeout {
-    from {
-        right: 30px;
-        opacity: 1;
-    }
-
-    to {
-        right: 0;
-        opacity: 0;
-    }
-}
-
-
-@media screen and (max-width:1400px) and (min-width:1024px) {
-    .editBtn {
-        grid-row: 4/5;
-        grid-column: 2/6;
-        font-size: 11px;
-        height: 23px;
-    }
-
-    .deleteBtn {
-        grid-row: 4/5;
-        grid-column: 7/12;
-        height: 23px;
-        font-size: 11px;
-    }
 }
 
 @media screen and (max-width:1024px) {
 
     .layout {
         grid-template-columns: 0.38fr 0.62fr;
-        height: 100%;
     }
 
     aside {
         grid-column: 1/2;
-        height: 91%;
-        overflow: auto !important;
     }
 
-    .main {
+    .membersContainer {
         height: 100%;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 0.81fr 0.1fr;
+        margin-bottom: 20px;
     }
 
     .mainContainer {
+        height: 1000px;
         grid-column: 2/3;
+    }
+
+    .main {
+        display: block;
         height: 100%;
+        grid-template-rows: 1fr 0.1fr;
     }
 
     .section1 {
         width: 98%;
+        display: grid;
         grid-template-rows: repeat(6, 1fr);
-        height: 60%;
     }
 
     .formWrapper hr {
@@ -780,18 +574,17 @@ small{
 
     .formWrapper {
         display: block;
-        padding-top: 20px;
-        padding-left: 25px;
-        grid-row: 1/2;
-        border-bottom: 0px;
-        margin-bottom: 20px;
     }
 
-    .formWrapper.no2{
+    .formWrapper.no2 {
         display: none;
-        grid-row: 1/2;
+    }
+
+    .formWrapper,
+    .formWrapper.no2 {
         padding-top: 20px;
         padding-left: 25px;
+        grid-row: 1/2;
         border-bottom: 0px;
         margin-bottom: 20px;
     }
@@ -817,6 +610,9 @@ small{
     }
 
     .section3 {
+        grid-row: 2/3;
+        position: fixed;
+        width: 100%;
         bottom: 0;
     }
 
@@ -854,22 +650,20 @@ small{
         text-align: center;
     }
 
-    .member-container {
-        height: 100%;
-    }
-
     #popup {
-        margin-left: -30%;
+        margin-right: 30%;
     }
 
     .section2Container {
         grid-template-rows: repeat(2, 0.2fr);
-        height: 30%;
+        height: 110px;
     }
 
-    #backBtnEdit,
+    #backBtnEdit {
+        display: none;
+    }
+
     #backBtnAdd {
         display: block;
-        margin-top: 60px;
     }
 }

@@ -5,8 +5,8 @@ import { updateMembers } from "./updateMembers.js";
 import { addMembers } from "./addMembers.js";
 
 export const baseUrl = "http://localhost:3000/users";
-memberCards();
 
+memberCards();
 backBtn();
 
 const formAdd = document.getElementById("form");

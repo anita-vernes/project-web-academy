@@ -1,5 +1,6 @@
 import { deleteMember } from "./deleteMembers.js";
 import { elements } from "./memberContainer.js";
+
 export function hidePopup() {
   removeListeners();
 
@@ -38,12 +39,12 @@ export function showPopup(e) {
 }
 
 function getName(memberId) {
-  let memberfirstName, memberlastName;
+  let memberFirstName, memberLastName;
   elements.filter((member) => {
     if (member.id === memberId) {
-      memberfirstName = member.firstName;
-      memberlastName = member.lastName;
+      memberFirstName = member.firstName;
+      memberLastName = member.lastName;
     }
   });
-  return `${memberfirstName} ${memberlastName}`;
+  return `${memberFirstName} ${memberLastName}`;
 }

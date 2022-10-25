@@ -4,18 +4,20 @@ import {
   getSports,
   getSportsEdit,
 } from "./selectorElementsGet.js";
+import { containsOnlyNumbers, isEmpty } from "./utility.js";
 
 export const validationAdd = (e) => {
-  const inputfirstName = document.getElementById("firstName");
-  const inputlastName = document.getElementById("lastName");
-  const inputAddress = document.getElementById("address");
-  const inputZipcode = document.getElementById("zipcode");
-  const inputCity = document.getElementById("city");
-  const inputCountry = document.getElementById("country");
-  const inputGender = document.getElementById("gender");
-  const inputAge = document.getElementById("age");
-  const inputActivity = getActivity();
-  const inputSport = getSports();
+  const form = document.querySelector(".formWrapper"), 
+    inputFirstName = form.querySelector("#firstName"),
+    inputLastName = form.querySelector("#lastName"),
+    inputAddress = form.querySelector("#address"),
+    inputZipcode = form.querySelector("#zipcode"),
+    inputCity = form.querySelector("#city"),
+    inputCountry = form.querySelector("#country"),
+    inputGender = form.querySelector("#gender"),
+    inputAge = form.querySelector("#age"),
+    inputActivity = getActivity(),
+    inputSport = getSports();
   let checker = true;
 
   const elements = [
@@ -35,14 +37,14 @@ export const validationAdd = (e) => {
     "activity",
   ];
 
-  if (isEmpty(inputfirstName)) {
+  if (isEmpty(inputFirstName)) {
     setError("firstName", "No first name provided!");
     checker = false;
   } else {
     unSetError("firstName");
   }
 
-  if (isEmpty(inputlastName)) {
+  if (isEmpty(inputLastName)) {
     setError("lastName", "No last name provided!");
     checker = false;
   } else {
@@ -79,16 +81,17 @@ export const validationAdd = (e) => {
 };
 
 export const validationEdit = (e) => {
-  const inputfirstName = document.querySelector(".no2 #firstName");
-  const inputlastName = document.querySelector(".no2 #lastName");
-  const inputAddress = document.querySelector(".no2 #address");
-  const inputZipcode = document.querySelector(".no2 #zipcode");
-  const inputCity = document.querySelector(".no2 #city");
-  const inputCountry = document.querySelector(".no2 #country");
-  const inputGender = document.querySelector(".no2 #gender");
-  const inputAge = document.querySelector(".no2 #age");
-  const inputActivity = getActivityEdit();
-  const inputSport = getSportsEdit();
+  const form = document.querySelector(".no2"),
+    inputFirstName = form.querySelector("#firstName"),
+    inputLastName = form.querySelector("#lastName"),
+    inputAddress = form.querySelector("#address"),
+    inputZipcode = form.querySelector("#zipcode"),
+    inputCity = form.querySelector("#city"),
+    inputCountry = form.querySelector("#country"),
+    inputGender = form.querySelector("#gender"),
+    inputAge = form.querySelector("#age"),
+    inputActivity = getActivityEdit(),
+    inputSport = getSportsEdit();
   let checker = true;
 
   const elements = [
@@ -108,14 +111,14 @@ export const validationEdit = (e) => {
     "no2 .activity",
   ];
 
-  if (isEmpty(inputfirstName)) {
+  if (isEmpty(inputFirstName)) {
     setError("no2 .firstName", "No first name provided!");
     checker = false;
   } else {
     unSetError("no2 .firstName");
   }
 
-  if (isEmpty(inputlastName)) {
+  if (isEmpty(inputLastName)) {
     setError("no2 .lastName", "No last name provided!");
     checker = false;
   } else {
@@ -153,21 +156,13 @@ export const validationEdit = (e) => {
   return checker;
 };
 
-function containsOnlyNumbers(str) {
-  return /^\d+$/.test(str);
-}
-
-const isEmpty = (input) => {
-  return input.value === "" || input.value === "null" || input === "";
-};
-
-function setError(input, message) {
+const setError = (input, message) => {
   let small = document.querySelector(`.${input} small`);
   small.style.display = "block";
   small.innerText = message;
-}
+};
 
-function unSetError(input) {
+const unSetError = (input) => {
   let small = document.querySelector(`.${input} small`);
   small.style.display = "none";
-}
+};

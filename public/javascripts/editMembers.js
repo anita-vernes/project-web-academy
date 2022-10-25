@@ -1,18 +1,21 @@
 import { baseUrl } from "./index.js";
 
+const form = document.querySelector(".no2");
+const inputfirstName = form.querySelector("#firstName");
+const inputlastName = form.querySelector("#lastName");
+const inputAddress = form.querySelector("#address");
+const inputZipcode = form.querySelector("#zipcode");
+const inputCity = form.querySelector("#city");
+const inputCountry = form.querySelector("#country");
+const inputGender = form.querySelector("#gender");
+const inputAge = form.querySelector("#age");
+let inputSports = form.querySelectorAll(".section2 input");
+
 export async function getInfo(e) {
   e.preventDefault();
-  const memberid = this.value;
-  const inputfirstName = document.querySelector(".no2 #firstName");
-  const inputlastName = document.querySelector(".no2 #lastName");
-  const inputAddress = document.querySelector(".no2 #address");
-  const inputZipcode = document.querySelector(".no2 #zipcode");
-  const inputCity = document.querySelector(".no2 #city");
-  const inputCountry = document.querySelector(".no2 #country");
-  const inputGender = document.querySelector(".no2 #gender");
-  const inputAge = document.querySelector(".no2 #age");
 
-  const res = await fetch(baseUrl + `/${memberid}`, {
+  const memberId = this.value;
+  const res = await fetch(baseUrl + `/${memberId}`, {
     method: "GET",
   });
   const data = await res.json();
@@ -26,22 +29,20 @@ export async function getInfo(e) {
   inputGender.value = data.gender;
   inputAge.value = data.age;
 
-  const inputactivity = document.querySelector(`.no2 #${data.activity_class}`);
-  inputactivity.checked = "checked";
-
-  let inputsports = document.querySelectorAll(`.no2 .section2 input`);
-  unchecker(inputsports);
+  const inputActivity = form.querySelector(`#${data.activity_class}`);
+  inputActivity.checked = true;
+  unchecker(inputSports);
 
   for (let sport of data.sports) {
-    let inputsport = document.querySelector(`.no2 .section2 #${sport}`);
-    inputsport.checked = true;
+    let inputSport = form.querySelector(`.section2 #${sport}`);
+    inputSport.checked = true;
   }
 
-  inputfirstName.setAttribute("class", memberid);
+  inputfirstName.setAttribute("class", memberId);
 }
 
-export const unchecker = (inputsports) => {
-  for (let input of inputsports) {
-    input.checked = false;
+export const unchecker = (inputSports) => {
+  for (let inputSport of inputSports) {
+    inputSport.checked = false;
   }
 };
