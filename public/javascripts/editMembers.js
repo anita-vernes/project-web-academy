@@ -1,14 +1,14 @@
 import { baseUrl } from "./index.js";
 
-const form = document.querySelector(".no2");
-const inputfirstName = form.querySelector("#firstName");
-const inputlastName = form.querySelector("#lastName");
-const inputAddress = form.querySelector("#address");
-const inputZipcode = form.querySelector("#zipcode");
-const inputCity = form.querySelector("#city");
-const inputCountry = form.querySelector("#country");
-const inputGender = form.querySelector("#gender");
-const inputAge = form.querySelector("#age");
+const form = document.querySelector(".no2"),
+  inputfirstName = form.querySelector("#firstName"),
+  inputlastName = form.querySelector("#lastName"),
+  inputAddress = form.querySelector("#address"),
+  inputZipcode = form.querySelector("#zipcode"),
+  inputCity = form.querySelector("#city"),
+  inputCountry = form.querySelector("#country"),
+  inputGender = form.querySelector("#gender"),
+  inputAge = form.querySelector("#age");
 let inputSports = form.querySelectorAll(".section2 input");
 
 export async function getInfo(e) {
